@@ -1,0 +1,468 @@
+@charset "UTF-8";
+
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+	
+}
+
+form .row label{display: inline-block; margin-top: 5px;}
+
+.page-container .sidebar-menu .logo-env > div > a {
+
+	display: inline-block;
+	color: #37c799;
+	font-size: 22px;
+
+}
+
+.sidebar-collapsed .profile-info span.fullname, .sidebar-collapsed a.profile-logout.pull-right  {
+
+	display: none !important;
+
+}
+
+
+/* Профиль */
+
+.profile-env section.profile-info-tabs {
+
+	padding-left: 50px;
+
+}
+
+.profile-tab-content{
+
+	padding-left: 30px;
+
+}
+
+.profile-info.dropdown > a img {  transform: translateX(0px); transition: 700ms transform;}
+
+.sidebar-collapsed .profile-info.dropdown > a img, .sidebar-is-collapsing .profile-info.dropdown > a img  {	transform: translateX(-10px);}
+
+
+/* Меняем ширину для изображения на странице группы */
+
+.col-md-6 .member-entry .member-img {
+	width: 20%;
+}
+
+.col-md-6 .member-entry .member-details {
+	width: 79.9%;
+}
+
+.col-md-6 .member-entry .member-details h4 {
+font-size: 18px;
+margin-left: 20px;
+margin-top: 0;
+}
+
+form .btn-icon.icon-left.pull-right{
+
+	margin-left: 12px;
+
+}
+
+.crumbtainer{
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color: #383737;
+	border-radius: 0;
+	padding: 12px 35px;
+	z-index: 1;
+
+
+}
+
+.crumbtainer a {
+
+	color: #fff;
+
+}
+
+.breadcrumb > li{ line-height: 30px; }
+
+.task-right .preview-tab{ height: 350px;}
+
+.task-left .CodeMirror {height: auto; height: 280px;}
+
+.panel.minimal > .panel-heading > .panel-title.action-save {
+
+	padding-bottom: 0;
+	top: 0;
+
+}
+
+
+.crumbtainer .breadcrumb{ display: inline-block; margin-bottom: 0; padding: 0;}
+
+.crumbtainer .btn { padding: 4px 10px;}
+
+.panel-body.bordered{
+
+	border: 1px solid #ddd;
+	border-top: none;
+
+}
+
+.bordered.example-box {
+	border: 1px solid #ddd;
+	margin-top: 15px;
+	padding: 10px;
+	margin-bottom:20px;
+	position: relative;
+	-webkit-transiton: 500ms all;
+}
+
+.bordered.example-box:before, .preview-tab:before{
+	
+	display: inline-block;
+	content: "Должно получиться так";
+	background-color: rgba(220,220,220,0.5);
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border-radius: 4px;
+	padding: 2px 6px;
+	opacity: 1;
+	transiton: all 500ms ;
+
+}
+
+.preview-tab:before {
+
+	content: "Получается так";
+
+}
+
+article.theory{
+
+	white-space: pre-line;
+	padding: 0px 20px;
+}
+
+ 
+
+.panel-body.bordered .tab-content{
+
+	padding: 0 20px;
+
+}
+
+.btn.dropdown-toggle{
+
+	font-size: 13px;
+
+}
+
+/* Делаем одинаковые отступы у лого при разных разрешениях и при сворачивании */
+
+.page-container .sidebar-menu .logo-env {
+	width: 100%;
+	padding: 20px;
+}
+
+
+
+/* Добавляем инвертированный текст */
+
+
+.text-inverse{
+
+	color: #fff;
+
+}
+
+/* Стилизуем плашки */
+
+.tile-stats .tile-footer{
+
+margin: 0 -20px -20px -20px;
+background-color: rgba(250,250,250,0.2);
+padding: 17px 20px;
+
+}
+
+/* Раскрашиваем фон прогресс-бара */
+
+.tile-stats .progress{
+
+	margin: 0;
+	background-color: rgba(88, 88, 88, 0.2);
+
+}
+
+/* Раскрашиваем прогресс-бары */
+
+.tile-stats .progress .progress-bar-complete{  background-color: #fff; }
+
+.tile-stats .progress .progress-bar-check{  background-color: rgba(255, 255, 255, 0.4)}
+
+/* На странице курса смотрим прогресс по треку*/
+
+
+/*
+.panel-heading > .panel-title {float: none;} /* Так делать нельзя*/
+*/
+.panel-heading > .panel-title .progress-micro {
+	border-radius: 5px;
+	background-color: #444;
+	height: 4px;
+	margin: 7px 0 2px 0 ;
+}
+
+.progress-bar-micro { background-color: #2FAF86; height: 4px;  border-radius: 5px;}
+
+/* Раскрашиваем блоки */
+
+.tile-stats *{position: relative; z-index: 1;}
+
+.tile-stats h2 { margin-top: 0px; position: relative;}
+
+.tracks-single { margin-bottom: 20px; }
+
+.tile-stats .icon { right: 20px; bottom: inherit; top:55px; }
+.tile-stats .icon i{ font-size: 75px; }
+
+.task-single-tile { padding: 20px 15px 15px 15px;}
+
+.task-description {font-size: 14px; color: #444;}
+
+
+#autocheck{
+
+	margin-left: 10px;
+
+ }
+
+.task-single-tile .col-md-6:first-child{  border-right: 1px solid #ddd; }
+
+.task-title{  margin-top: 0;}
+
+.task-description,.task-title{  margin-left: 10px;}
+
+/* */
+
+table#checklog{  margin-bottom: 0;}
+
+table#checklog tr td {
+
+	font-size: 13px;
+	vertical-align: top;
+	padding: 0px 0px 9px 5px;
+	border: none;
+
+}
+
+.icon-left i{ font-size: 15px !important; }
+.icon-left { font-size: 13px; }
+
+form .panel-body{
+
+	border: 1px solid #ddd;
+	border-top: none;
+ 
+
+}
+
+.panel-body .CodeMirror {margin-left: 10px;}
+
+.CodeMirror .CodeMirror-code div{font-size: 14px;}
+
+/*  Стилизация выпадающего списка  */
+
+.btn .caret {  margin-left: 5px; }
+
+
+/* Стилизация таблички с документами */
+
+table.table-docs tr td p.small {margin-bottom: 0;}
+
+table.table-docs tr td:first-child{width: 40px;}
+
+table.table-docs tr td a.btn-save {opacity: 0; transition: 400ms all;}
+
+table.table-docs tr:hover td a.btn-save {opacity: 1; }
+
+
+/* Стилизация редактирования кода на странице редактирования */
+
+.task-editor textarea{
+	width: 100%;
+	min-height: 250px;
+}
+
+.task-editor .CodeMirror { height: 250px; }
+
+/* Стилизация алертов и штук внутри алертов */
+
+.alert{ 	padding: 10px;	font-size: 14px; }
+
+.alert .btn{ 	margin-left: 8px; }
+
+
+.jumbotron {border: 3px solid #37c799; }
+
+.btn-document {
+
+	text-align: left;
+	white-space: normal;
+
+}
+
+
+
+/* Modal */
+
+.modal-content { box-shadow: 0 0 100px 1500px rgba(0,0,0,0.3);}
+
+.modal-backdrop.in{display: none;}
+
+.modal-open .page-container{padding-right: 0;}
+
+/* Sandbox */
+
+.sandbox-editor.tab-content{ padding: 25px 35px !important; }
+
+.sandbox-preview{ border: 1px solid #ddd; }
+
+.sandbox-data {display: none;}
+
+.crumbtainer.sandbox-navbar{   padding: 12px 20px;}
+
+.sandbox-ide {position: relative;}
+
+
+/* Algorithm timeline */
+
+ul.cbp_tmtimeline {   }
+
+ 
+
+.page-body .main-content .cbp_tmtimeline > li .cbp_tmlabel p.compact{
+
+	margin: 7px 0;
+	font-size: 13px;
+
+	white-space: pre-line;
+
+}
+.page-body .main-content .cbp_tmtimeline > li .cbp_tmlabel {
+ 
+margin-bottom: 30px !important;
+}
+
+.tile-algorithm .algorithm-layout  h3 {
+	font-size: 16px;
+	margin-top: 0px;
+	color: #303641;
+	margin-bottom: 9px;
+
+}
+
+.tile-algorithm{ border: 0; padding-top: 0; }
+
+.tile-algorithm h2{ margin-top: 0;}
+
+.algorithm-image{max-width: 100%; border-radius: 4px; display: block;}
+
+.tile-algorithm:hover{background-color: inherit; }
+
+/*.tile-algorithm .bg-cyan {background-color: #37c799 !important; }*/
+
+.tile-algorithm .bg-cyan {color: #37c799 !important; font-weight: bold !important; }
+
+.tile-algorithm .algorithm-layout  h2.num {
+	font-size: 28px;
+	font-weight: normal;
+	color: #303641;
+}
+
+.page-body .main-content .cbp_tmtimeline > li .cbp_tmicon{
+
+	box-shadow: 0px 0px 0px 5px rgba(227, 228, 230, 1);
+
+}
+
+.page-body .main-content .cbp_tmtimeline > li .cbp_tmlabel{ padding: 15px;}
+
+.tile-algorithm code {
+padding: 8px 12px;
+white-space: pre-wrap;
+display: inline-block;
+}
+
+
+.tile-algorithm h3 {
+	margin-bottom: 15px;
+	margin-top: 20px;
+
+}
+
+.tile-algorithm a.btn {
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+
+.tile-algorithm .icon i {
+ 
+font-size: 60px;
+bottom: 5px;
+}
+
+.panel-algorithm textarea:focus {
+
+	height: 250px;
+
+}
+
+
+.algorithm-preview {
+	border: 1px dashed #ddd;
+	padding: 15px;
+}
+
+.algorithm-layout a {
+	color: #E96C19;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+
+/*  Вывод студентов списком */
+
+.students-index img { margin-right: 10px; }
+
+.student-index-item{	margin-bottom: 20px;  }
+
+.student-index-item:nth-child(3n+1) { clear: both;}
+
+/* Страница видео */
+
+.screen {
+
+	display: inline-block;
+	border: 1px dashed #333;
+	padding: 10px;
+
+}
+
+/* Секундомер */
+
+#stopwatch {
+
+	font-size: 18px;
+	padding: 0px 10px;
+
+}
+
+#stopwatch:hover {	color: #fff;}

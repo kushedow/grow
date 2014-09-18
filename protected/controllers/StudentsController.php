@@ -61,16 +61,28 @@ class StudentsController extends Controller{
 
 			// добавляем вручную, какие поля будем перезаписывать
 
-			$record = array("shortname","fullname","phone","vkid","pass","avatar","mail");
+			$record = array("shortname","fullname","phone","vkid","pass","avatar","mail","yes_office","yes_freelance","yes_internship","yes_projects");
 
 
 			foreach ($record as $key) {
 
-				$student->$key = $_REQUEST['Students'][$key];
+				if(isset($_REQUEST['Students'][$key])){
+
+					$student->$key = $_REQUEST['Students'][$key];
+
+				}	
 
 			}
 
+
 			if ( $student->save()) { 
+
+
+				if(isset($_REQUEST["Students"]["Groups"])){
+
+					$student->setRelationRecords("Groups", $_REQUEST['Students']["Groups"]);
+
+				}
 
 				Yii::app()->notify->add("Студент обновлен","success"); 
 
@@ -115,30 +127,29 @@ class StudentsController extends Controller{
 
 	}
 
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+
+	public function actionAddpoint($id){
+
+		$student = Students::model()->findByPk($id);
+
+		$bonus = new Points();
+
+		if(isset($_REQUEST['Points'])){
+
+			$data = $_REQUEST['Points'];
+
+			$bonus->student = $data['student'];
+			$bonus->earned = $data['earned'];
+			$bonus->comment = $data['comment'];
+			$bonus->by = $data['by'];
+
+			if($bonus->save()){ Yii::app()->notify->add("Бонус добавлен");}else{Yii::app()->notify->addErrors($bonus->getErrors());}
+
+		}
+
+		$this->render('addpoint', array('student'=>$student,"point"=>$bonus));
+		
 	}
 
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
+	 
 }

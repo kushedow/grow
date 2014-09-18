@@ -67,6 +67,8 @@ class Students extends ActiveRecord
 
 		 	"Buckets"=>array(self::HAS_MANY,'Buckets',"student"),
 
+			"Points"=>array(self::HAS_MANY,'Points',"student"),
+
 		);
 	
 	}
@@ -88,7 +90,11 @@ class Students extends ActiveRecord
 			'phone' => 'Phone',
 			'avatar' => 'Avatar',
 			'settings' => 'Настройки',
-		 
+
+			'yes_office' => 'Хочу в офис',
+			'yes_freelance' => 'Хочу на фриланс',
+			'yes_internship' => 'Хочу на стажировку',
+			'yes_project' => 'Хочу на проект',		 
 		);
 	}
 
@@ -135,9 +141,11 @@ class Students extends ActiveRecord
 
 	public function getHasPortfolio(){
 
-		Solutions::model()->findAllByAttributes(array("student"=>($this->id))); 
+		$solutions_count = Solutions::model()->countByAttributes(array("student"=>($this->id),"publish"=>true)); 
 
-		Yii::app()->notify->add("Есть портфолио");
+		$buckets_count = Buckets::model()->countByAttributes(array("student"=>($this->id),"portfolio"=>true)); 
+
+		return $solutions_count+$buckets_count;
 
 	}
 

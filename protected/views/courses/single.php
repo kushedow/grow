@@ -11,7 +11,7 @@
 
 	<h1><?php echo $course->title; ?></h1>
 
-	<h4>Набрано <?php echo stathelper::earnedforcourse($course->id,$student); ?> из <?php echo stathelper::pointsforcourse($course->id); ?> поинтов</h4>
+	<h4>Набрано <?php echo stathelper::earnedforcourse($student,$course->id); ?> из <?php echo stathelper::pointsforcourse($course->id); ?> поинтов</h4>
 	<hr>
 	<p><?php echo $course->description; ?></p>
 	

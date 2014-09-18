@@ -167,11 +167,11 @@ class EditorController extends Controller{
 
 			if($track->save()){
 
-			 	Yii::app()->notify->add("Трек сохранен. <a href='/track/".$track->code."' target='blank'>Перейти к треку</a>");
+			 	Yii::app()->notify->add("Трек сохранен. <a href='/track/".$track->code."' target='blank'><u>Перейти к треку</u></a>");
 
 			 	if(isset($_REQUEST['Tracks']["Docs"])){$track->setRelationRecords("Docs", $_REQUEST['Tracks']["Docs"]);}
 			 	
-			 	$track->setRelationRecords("Algorithms", $_REQUEST['Tracks']["Algorithms"]);			 	
+			 	if(isset($_REQUEST['Tracks']["Algorithms"])){$track->setRelationRecords("Algorithms", $_REQUEST['Tracks']["Algorithms"]);} 		 	
 
 			}else{
 
@@ -226,6 +226,16 @@ class EditorController extends Controller{
 	}
 
 
+
+	//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+
+
+	//               Обрабатываем  Видео                    //
+
+
+
 	public function actionCreatevideo(){
 
 		if(isset($_REQUEST['Videos'])){
@@ -260,6 +270,55 @@ class EditorController extends Controller{
 		$this->render('video',array("video"=>$video));
 		
 	}
+
+
+
+	//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+
+
+
+	//                   Обрабатываем  FAQ                  //
+
+
+
+
+	public function actionCreatefaq(){
+
+		if(isset($_REQUEST['Faqs'])){
+
+			// обрабатывем данные из формы
+
+			$faq = Faqs::model()->updateFromRequest();
+
+			$this->redirect( array('/faqs/'.$faq->id.'/edit') );
+ 
+		} 
+
+		if(!isset($faq)) { $faq = new Faqs();}
+
+		$this->render('faq',array("faq"=>$faq));
+
+	}
+
+
+	public function actionEditfaq($id){
+
+		$faq = Faqs::model()->findByPk($id);
+		
+		if(isset($_REQUEST['Faqs'])){
+
+			// обрабатывем данные из формы
+
+			$faq = Faqs::model()->updateFromRequest($id);
+
+		}
+
+		$this->render('faq',array("faq"=>$faq));
+		
+	}
+
 
 
 	// Uncomment the following methods and override them if needed

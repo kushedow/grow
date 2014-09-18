@@ -11,7 +11,7 @@ class CoursesController extends Controller
 
 		$course = Courses::model()->findByPk($id);
 
-		$tracks = Tracks::model()->with(array('Tasks.Solutions'=>array('on'=>'Solutions.student='.$_SESSION['user'])))->findAllByAttributes(array("course"=>$course->id));
+		$tracks = Tracks::model()->with(array('Tasks.Solutions'=>array('on'=>'Solutions.student='.$_SESSION['user'])))->findAllByAttributes(array("course"=>$course->id),array('order' => 't.order'));
 
 		$this->render('single',array("course"=>$course,"tracks"=>$tracks));
 
@@ -27,6 +27,8 @@ class CoursesController extends Controller
 		 $this->actionByid($course->id);
 
 	}
+
+
 
 	// Uncomment the following methods and override them if needed
 	/*

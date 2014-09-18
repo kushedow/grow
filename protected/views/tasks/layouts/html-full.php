@@ -1,41 +1,74 @@
-<div class="row">
+<div class="row ">
 
-	<div class="col-md-6 task-left">
+	<div class="col-md-6">
 
-		<h3 class="task-title"><?php echo $task->title; ?> <small class='text-muted'><?php echo $task->points; ?>пт.</small></h3>
-		
+		<div class="panel-heading">		
+							 
+			<div class="panel-options pull-right">
+								
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#editor-example" data-toggle="tab">Образец</a></li>
+					<li class=""><a href="#editor-preview" data-toggle="tab">Браузер</a></li>
+				</ul>
+			</div>
 
-		<div class="bordered example-box" >
-
-			<iframe src="" frameborder="0" id="example" width="100%" height="210"></iframe>
-
-			 <code style="display: none" id="example-code"><?php echo $task->example; ?></code>  
-
-			<script>
-
-				var exampleFrame = document.getElementById('example');
-			    var example =  exampleFrame.contentDocument ||  exampleFrame.contentWindow.document;
-
-			    var examplecode = document.getElementById('example-code');
-
-			    
-			    //todo добавить песочницу JS
-
-			    example.open();
-			    example.write("<style> body {margin:0px; padding: 0px; font-family: arial;} </style>"+examplecode.innerHTML);
-			    example.close();
-
-			     examplecode.parentNode.removeChild(examplecode)
-
-			</script>
-
-
-			 
+			<h3 class="task-title pull-left"><?php echo $task->title; ?> <small class='text-muted'><?php echo $task->points; ?>пт.</small></h3>
+				
 		</div>
+
+		<div class="panel-body">
+		
+			<div class="tab-content browser-tabs">
+
+				<div class="tab-pane preview-tab active" id="editor-example">
+
+					<div class="example-box" >
+
+						<iframe src="" frameborder="0" id="example" width="100%" height="510"></iframe>
+
+						 <code style="display: none" id="example-code"><?php echo $task->example; ?></code>  
+
+						<script>
+
+							var exampleFrame = document.getElementById('example');
+						    var example =  exampleFrame.contentDocument ||  exampleFrame.contentWindow.document;
+
+						    var examplecode = document.getElementById('example-code');
+
+						    
+						    //todo добавить песочницу JS
+
+						    example.open();
+						    example.write("<style> body {margin:0px; padding: 0px;} </style>"+examplecode.innerHTML);
+						    example.close();
+
+						     examplecode.parentNode.removeChild(examplecode)
+						    
+
+						</script>
+
+					</div>
+
+				</div>
+
+				<!-- Результат -->
+
+				<div class="tab-pane preview-tab " id="editor-preview">
+						
+						<?php $this->renderPartial("parts/preview"); ?>	
+						
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<div class="col-md-6">
 
 		<!-- <p class="task-description"><?php echo $task->description ?></p> -->
 
-		<form action="" method="post" >
+		<form action="" method="post"  full-width>
 
 			<div class="panel minimal minimal-gray">
 						
@@ -47,12 +80,14 @@
 								<li class=""><a href="#editor-theory" data-toggle="tab">Теория</a></li>
 								<li class="active"><a href="#editor-html" data-toggle="tab">HTML</a></li>
 								<li class=""><a href="#editor-css" data-toggle="tab">CSS</a></li>
+								
+								<li class=""><a href="#editor-comments" data-toggle="tab">Комментарии</a></li>
 
 							</ul>
 						</div>
 						<div class="panel-title pull-right action-save">
 
-	
+
 						<?php if(strlen($task->check)>10): ?>
 						
 							<button type="submit" id="autocheck" name="action" value="check" class="btn btn-sm btn-primary btn-icon icon-left pull-right">
@@ -62,8 +97,7 @@
 							
 						<?php endif; ?>
 
-						
-							
+					
 							
 							<button type="submit" name="action" value="save"  class="btn btn-sm btn-default btn-icon icon-left pull-right">
 								Сохранить
@@ -71,8 +105,7 @@
 							</button>
 
 			
-							
-
+					
 						</div>
 
 					</div>
@@ -84,94 +117,39 @@
 				</div>
 
 		</form>
-	</div> <!-- /.col-md-6 -->
-
-	<div class="col-md-6 task-right">
-
-		<div class="panel minimal">
-				
-			<!-- panel head -->
-			<div class="panel-heading">
-				
-				
-				<div class="panel-options pull-left">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#tab1" data-toggle="tab">Ваш результат</i></a></li>
-						<li><a href="#tab2" data-toggle="tab">Комментарии 
-
-							<?php if($task->discussed): ?>
-						
-							<span class="badge badge-secondary"><?php if($task->active): echo count($task->Solutions[0]->Comments); endif; ?></span>
-
-							<?php  endif ?>
-
-
-						</a></li>
-					</ul>
-				</div>
-
-				<!-- Навигация по предыдущему/следующему заданию -->
-
-				<div class="panel-title pull-right ">
-
-					<small>
-
-					<?php if($task->next>0): ?> 
-
-						<a href="/task/<?php echo $task->next; ?>" class="text-muted">Следующее задание</a>
-
-					<?php  else: ?>
-
-						Это последнее задание в треке					
-
-					<?php endif;?>
-
-					</small>
-				
-				</div>
-
-
-			</div>
-			
-			<!-- panel body -->
-			<div class="panel-body bordered">
-				
-				<div class="tab-content">
-					<div class="tab-pane preview-tab active" id="tab1">
-						
-						<?php $this->renderPartial("parts/preview"); ?>	
-						
-					</div>
-					
-					<div class="tab-pane" id="tab2">
-						 
-						<?php $this->renderPartial("parts/comments",array("task"=>$task)); ?>
-
-			     	</div>
-				</div>
-				
-			</div>
-			
-		</div>
-
-
-		<div class="tile-stats tile-gray task-single-tile">
-
-				<?php $this->renderPartial("parts/check"); ?>
-
-		</div>
-
-
+	 
 
 		<?php $this->renderPartial("parts/actionbuttons"); ?>
 
 
-	</div> <!-- /.col-md-6 -->
+	</div>
 
 </div>
 
- 
 
+	<style>
+
+		.example-box{
+
+			height: 535px;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			padding: 10px;
+
+		}
+
+		#preview {height: 530px !important; padding: 10px;}
+
+		.panel-body{ padding: 0;}
+
+		.CodeMirror{padding-top: 15px;}
+
+		.bordered.example-box:before,.preview-tab:before {display: none;}
+
+		.browser-tabs {border: 1px solid #999;}
+
+	</style>
 
 	<link rel="stylesheet" href="codemirror/lib/codemirror.css">
 	<link rel="stylesheet" href="codemirror/theme/monokai.css">
@@ -280,7 +258,7 @@
 		    //todo добавить песочницу JS
 
 		    preview.open();
-		    preview.write(editor_html.getValue()+"<style> body {margin:0px; padding: 0px; font-family: arial;} "+editor_css.getValue()+"</style>");
+		    preview.write(editor_html.getValue()+"<style> body {margin:0px; padding: 0px;} "+editor_css.getValue()+"</style>");
 		    preview.close();
 		        
 		}

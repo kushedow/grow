@@ -60,8 +60,14 @@
 			</li>
 			<li >
 				<a href="/student<?php echo Yii::app()->my->id; ?>">
-					<i class="entypo-gauge"></i>
+					<i class="entypo-home"></i>
 					<span>Профиль</span>
+					<?php $finishhim = stathelper::myToFinish();  if($finishhim>0): ?>
+
+						<span class="badge badge-secondary"><?php echo $finishhim; ?> правки</span>
+
+					<?php endif; ?>
+
 				</a>
 			</li>
 			<li>
@@ -121,26 +127,26 @@
 				</a>
 			</li> -->
 
-			<!-- <li>
+			<li>
 				<a href="/groups">
-					<i class="entypo-doc-text"></i>
+					<i class="entypo-users"></i>
 					<span>Группы</span>
 				</a>
 			</li>
- -->
+
 
 			<li>
 				<a href="/students">
-					<i class="entypo-doc-text"></i>
+					<i class="entypo-users"></i>
 					<span>Студенты</span>
 				</a>
 			</li>
 
 			<li class="">
 				<a href="/algorithms">
-					<i class="entypo-bag"></i>
+					<i class="entypo-flow-tree"></i>
 					<span>Алгоритмы</span>
-					<span class="badge badge-info badge-roundless">2 новых</span>
+					<!-- <span class="badge badge-info badge-roundless">2 новых</span> -->
 				</a>
 
 				<ul>
@@ -163,43 +169,68 @@
 
 			<li>
 				<a href="/videos">
-					<i class="entypo-doc-text"></i>
+					<i class="entypo-video"></i>
 					<span>Видео</span>
 				</a>
 			</li>
 
 			<li  >
 				<a href="/sandbox">
-					<i class="entypo-bag"></i>
+					<i class="entypo-bucket"></i>
 					<span>Песочница</span>
 					 
 				</a>
 				
-			</li>
+			</li> 
 
 			<?php if(Yii::app()->my->access("users")): ?>
 			
-			<li>
-				<a href="/students/create">
-					<i class="entypo-window"></i>
-					<span>Создать пользователя</span>
-				</a>
-				
-			</li>
+				<li>
+					<a href="/students/create">
+						<i class="entypo-user-add"></i>
+						<span>Создать пользователя</span>
+					</a>
+					
+				</li>
 			
 			<?php endif; ?>
 
 
+
+			<?php if(Yii::app()->my->access("check")): ?>
+			
+			   <li>
+					<a href="/check" target="blank">
+						<i class="entypo-window"></i>
+						<span>Проверка</span>
+
+						<span class="badge badge-info badge-roundless"><?php echo stathelper::checkTotal(); ?> задания</span>
+					</a>
+					
+				</li>
+			
+			<?php endif; ?>
+
+			<li>
+				<a href="https://docs.google.com/forms/d/1FpumR36tdhhLDzbG2pyH_oX8lPQfI1BO_0uQKsHA4FM/viewform" target="blank">
+					<i class="entypo-alert"></i>
+					<span>Я нашел ошибку!</span>
+				</a>
+				
+			</li>
+
+
+			
 			
 
 						
-			<li>
+			<!-- <li>
 				<a href="https://docs.google.com/document/d/14RsZBMNybQcbGG7YgUmMuW-OpRw08D5HyIa3A-TmWd0/edit" target="blank">
 					<i class="entypo-window"></i>
 					<span>Глоссарий</span>
 				</a>
 				
-			</li>
+			</li> -->
 
 			<li>
 				<a href="/settings" target="blank">
@@ -208,6 +239,8 @@
 				</a>
 				
 			</li>
+
+
 
 			
 		</ul>

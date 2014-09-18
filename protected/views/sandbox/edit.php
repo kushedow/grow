@@ -16,6 +16,7 @@
 			
 			<button id ="sandbox-landscape" class="btn btn-default btn-lg" type="button">ll</button> 
 			<button id ="sandbox-portrait" class="btn  btn-default btn-lg" type="button">=</button>
+			<label class="btn btn-default" style="margin-top:0"><?php echo $form->checkBox($bucket,'portfolio',array('class'=>'')); ?>  В портфолио</label>	
 			<button type="submit" class="btn btn-default  btn-lg pull-right">Сохранить</button>
 
 		</div>

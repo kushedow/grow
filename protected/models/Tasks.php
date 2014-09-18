@@ -76,7 +76,7 @@ class Tasks extends ActiveRecord{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, description,  track', 'required'),
+			array('title,  track', 'required'),
 			array('track, course, author,', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>170),
 			array('description', 'length', 'max'=>340),

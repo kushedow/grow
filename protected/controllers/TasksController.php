@@ -33,6 +33,16 @@ class TasksController extends Controller
 	}
 
 
+
+
+	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
+
+
+
+
+
 	public function actionByid($id,$student = null){
 
 		// Если студент не задан, то сохраняем для залогинившегося пользователя
@@ -83,22 +93,21 @@ class TasksController extends Controller
 
 
 	public function actionsomeonestask($student,$task){
-
 		
 		$solution = Solutions::model()->findByAttributes(array("student"=>$student,"task"=>$task));
 
 		if($solution){
 
-			if(isset($_REQUEST['Comments'])){ $this->addComment($solution,$_REQUEST['Comments']); }
+			//if(isset($_REQUEST['Comments'])){ $this->addComment($solution,$_REQUEST['Comments']); }
 
 			if($solution->student != Yii::app()->my->id ){
 
 				// Случай, если мы просматриваем чужую запись
 
-				$actions[] = '<a href="/task/'.$solution->student.'/'.$solution->task.'/set/complete" class="btn btn-success btn-xs pull-right ">Выполнено</a>';
-				$actions[] = '<a href="/task/'.$solution->student.'/'.$solution->task.'/set/finishhim" class="btn btn-orange btn-xs pull-right">Доделать</a>';
+				$actions[] = '<a href="/task/'.$solution->task.'/'.$solution->student.'/set/complete" class="btn btn-success btn-xs pull-right ">Выполнено</a>';
+				$actions[] = '<a href="/task/'.$solution->task.'/'.$solution->student.'/set/finishhim" class="btn btn-orange btn-xs pull-right">Доделать</a>';
 
-				Yii::app()->notify->add("Вы просматриваете задание студента ".$solution->Student->fullname." ".implode($actions," ") ,"default");
+				Yii::app()->notify->add("Вы просматриваете задание студента <a href='/student".$solution->Student->id."'><u>".$solution->Student->fullname."</u></a> ".implode($actions," ") ,"default");
 
 			}	 
 
@@ -111,15 +120,6 @@ class TasksController extends Controller
 		}
 
 	}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -142,9 +142,11 @@ class TasksController extends Controller
 
 			$solution->status = $status;
 
+			$solution->checked = Yii::app()->my->id;
+
 			if($solution->save()){
 
-				//Yii::app()->notify->add("Статус успешно изменен");
+				Yii::app()->notify->add("Статус успешно изменен","success");
 
 			}else{
 
@@ -155,7 +157,7 @@ class TasksController extends Controller
 
 			//todo: добавить страницу ошибки
 
-			Yii::app()->notify->add("Запись не найдена");
+			Yii::app()->notify->add("Запись не найдена","danger");
 
 		}
 
@@ -164,13 +166,6 @@ class TasksController extends Controller
 		$this->actionsomeonestask($student,$task);
 
 	}
-
-
-
-
-
-
-
 
 
 
@@ -233,6 +228,37 @@ class TasksController extends Controller
 		 
 	}
 
+
+
+
+	public function actionRemove($id){
+
+		if(!Yii::app()->my->access("edit")){ return false;}
+
+		if($task = Tasks::model()->findByPk($id)){
+
+			if($task->delete()){ Yii::app()->notify->add("Задание удалено");}
+
+			$this->render('/site');
+
+		}else{
+
+			  Yii::app()->notify->add("Задание не существует"); 
+
+
+		}
+		
+	}
+
+
+
+
+	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
+
+
+
 	private function removeComment($id){
 
 		 
@@ -246,49 +272,42 @@ class TasksController extends Controller
 
 	}
 
-	private function addComment($solution,$comment){
 
-		$comment = new Comments();
 
-		$comment->student = Yii::app()->my->id;
 
-		$comment->solution = $solution->id;
+	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
 
-		$comment->comment = htmlspecialchars($_POST['Comments']['comment']);
 
-		if($comment->save()){
 
-			Yii::app()->notify->add("Комментарий добавлен","success");
+	public function actionCheckall($course=null){
 
-		}
+		$solutions = Solutions::model()->with("Task")->FindAllByAttributes(array("status"=>"check"));
 
+		$this->render('check', array('solutions'=>$solutions));
+		
 	}
+
+
+
+	// private function addComment($solution,$comment){
+
+	// 	$comment = new Comments();
+
+	// 	$comment->student = Yii::app()->my->id;
+
+	// 	//$comment->solution = $solution->id;
+
+	// 	$comment->comment = htmlspecialchars($_POST['Comments']['comment']);
+
+	// 	//if($comment->save()){
+
+	// 	//	Yii::app()->notify->add("Комментарий добавлен","success");
+
+	// 	//}
+
+	// }
 	 
-	 
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
+	  
 }

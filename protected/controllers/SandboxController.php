@@ -86,13 +86,14 @@ class SandboxController extends Controller{
 
 		if(!$bucket){Yii:app()->notify->add("Файл не найден в песочнице"); $this->render("/site/index");return false; }
 
-		if($bucket->student != Yii::app()->my->id){ii:app()->notify->add("У вас нет прав для редактирования этого файла"); $this->render("/site/index");return false; }
+		// if($bucket->student != Yii::app()->my->id){Yii::app()->notify->add("У вас нет прав для редактирования этого файла"); $this->render("/site/index");return false; }
 
 		if(isset($_REQUEST['Buckets'])){
 
 			$bucket->html = $_REQUEST['Buckets']['html'];
 			$bucket->css = $_REQUEST['Buckets']['css'];
 			$bucket->js = $_REQUEST['Buckets']['js'];
+			$bucket->portfolio = $_REQUEST['Buckets']['portfolio'];
 
 			$bucket->title = $_REQUEST['Buckets']['title'];
 

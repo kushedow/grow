@@ -6,8 +6,15 @@ return array(
 	'register'=>'auth/register',
 	'turn/<id:\d+>'=>'auth/turn',
 
+	// Группы и прогресс по треками по группам
+
 	'groups'=>'groups/index',
-	'group/<id:\d+>'=>'groups/bycode',				
+	'groups/<code:\w+>'=>'groups/bycode',				
+	'groups/<id:\d+>/progress/<trackid:\d+>'=>'tracks/progress',	
+
+	"check/<code:\w+>"=>"groups/tracks",
+	"check"=>"tasks/checkall",
+
 
 	'course/<id:\d+>'=>'courses/byid',
 	'course/<code:\w+>'=>'courses/bycode',
@@ -16,7 +23,7 @@ return array(
 	
 	'track/<id:\d+>'=>'tracks/byid',
 	'track/<code:\w+>'=>'tracks/bycode',
-	
+	'track/<id:\d+>/theory'=>'tracks/theory',
 	'track/<id:\d+>/edit'=>'editor/edit_track',
 				
 
@@ -25,10 +32,12 @@ return array(
 	'task/<id:\d+>'=>'tasks/byid',
 	'task/<id:\d+>/restart'=>'tasks/restart',	
 	'task/<id:\d+>/edit'=>'editor/edit_task',
+	'task/<id:\d+>/remove'=>'tasks/remove',
 	'task/<task:\d+>/<student:\d+>/set/<status:\w+>'=>'tasks/setstatus',
 
 	'student<student:\d+>/task<task:\d+>'=>'tasks/someonestask',
 	'student<id:\d+>'=>'students/profile',
+	'student<id:\d+>/addpoint'=>'students/addpoint',	
 	'students/create'=>'students/create',
 
 
@@ -78,11 +87,18 @@ return array(
 	// 
 
 	'videos'=>"videos/index",
-	'video/<id:\d+>'=>"videos/byid",	
+	'video/<id:\d+>'=>"videos/byid",
+
 	'videos/create'=>"editor/createvideo",
 	'video/<id:\d+>/edit'=>"editor/editvideo",
 
+	'faqs/create/<id:\d+>'=>"editor/createfaq",
+	'faqs/<id:\d+>/edit'=>"editor/editfaq",
+
+
 	'settings'=>"students/settings",
+
+	'bugreport'=>"site/bugreport"
 
 
 ); ?>

@@ -56,7 +56,7 @@
 			<br>
 
 			<!-- Лайаут задания --> 
-			<label for="">Курс</label>
+			<label for="">Шаблон страницы</label>
 			<?php $list = layouthelper::layouts(); ?>
 			<?php echo $form->dropDownList($task,'layout',$list,array('class'=>'form-control')); ?>
 
@@ -131,7 +131,7 @@
 					<blockquote>
 
 						<h5>Пример:</h5>
-						<p>[{"title":"Добавьте три контейнера на страницу","code":"find('div').length"}]</p>
+						<p>[{"title":"Добавьте три контейнера на страницу","code":"preview.find('div').length"}]</p>
 
 					</blockquote>	
 					 
@@ -145,8 +145,14 @@
 
 			<div class="tab-pane" id="theory">
 					
-					<?php echo $form->textArea($task,'theory'); ?>		
-					 
+					<?php echo $form->textArea($task,'theory',array('class'=>'form-control wysihtml5','data-stylesheet-url'=>'assets/css/wysihtml5-color.css')); ?>	
+
+					<!-- <textarea class="form-control wysihtml5" data-stylesheet-url="" name="sample_wysiwyg" id="sample_wysiwyg"></textarea>	 -->
+					<br>
+					<blockquote>
+						
+						Для выделения кода рекомендуется использовать тег &lt;code&gt;
+					</blockquote>		 
 			</div>
 
 		</div>
@@ -173,6 +179,7 @@
 
 	<link rel="stylesheet" href="codemirror/lib/codemirror.css">
 	<link rel="stylesheet" href="codemirror/theme/monokai.css">
+	<link rel="stylesheet" href="assets/js/wysihtml5/bootstrap-wysihtml5.css">
 
 	<script src="codemirror/lib/codemirror.js"></script>
 	<script src="codemirror/mode/xml/xml.js"></script>
@@ -181,6 +188,9 @@
 	<script src="codemirror/mode/php/php.js"></script>	    
 	<script src="codemirror/mode/htmlmixed/htmlmixed.js"></script>
 	<script src="codemirror/addon/emmet/emmet.min.js"></script>
+
+	<script src="assets/js/wysihtml5/wysihtml5-0.4.0pre.min.js"></script>
+	<script src="assets/js/wysihtml5/bootstrap-wysihtml5.js"></script>
 
 	<script>
 

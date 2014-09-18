@@ -27,8 +27,6 @@ class SiteController extends Controller
 	 */
 	public function actionIndex(){
 
-	 
-		 
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 
@@ -49,7 +47,6 @@ class SiteController extends Controller
 				$this->render('error', $error);
 		}
 	}
-
 
 
 	/**
@@ -85,5 +82,10 @@ class SiteController extends Controller
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
+	}
+
+	public function actionBugreport()
+	{
+		
 	}
 }

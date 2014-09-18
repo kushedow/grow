@@ -2,45 +2,7 @@
 
 <!-- Здесь плашка -->
 
-<div class="tile-stats tile-cyan tracks-single ">
-
-    <div class="icon"><i class="entypo-paper-plane"></i></div>
-
-    	<p style="margin-bottom:7px">Курсы → <a href="/course/<?php echo $track->Course->code;?>" style="color:#fff;"> <?php echo $track->Course->title; ?></a> </p>
-
-		<?php if(Yii::app()->my->access("edit") ): ?> <a href="/track/<?php echo $track->id; ?>/edit" style="position: relative; z-index: 10;" class="btn btn-info pull-right">Редактировать</a> <?php endif; ?>
-			
-		<h1 class="num"><?php echo $track->title ?></h1>
-		<h4 class="text-inverse"><?php echo $track->description ?></h4>
-		
-	 <br>
-
-	 <div class="tile-footer clearfix">
-
-	 	<!-- Прогресс  -->
-	
-		<div class="progress progress active pull-left" style="width: 80%">
-
-			<div class="progress-bar progress-bar-complete" role="progressbar"  style="width: <?php echo $track->progress+1; ?>%">
-				<span class="sr-only pull-right"><?php echo $track->progress ?> Complete (success)</span>
-			</div>
-
-			<?php if($track->check>0): ?>
-				<div class="progress-bar progress-bar-check " role="progressbar"  style="width: <?php echo $track->check; ?>%"></div>
-			<?php endif; ?>
-								 
-
-		</div>
-
-	
-		<span class=" text-inverse pull-right">
-
-			<?php echo $track->progress ?>% пройдено
-		</span>
-		
-		 
-	</div>
-</div>
+<?php include("parts/header"); ?>
 
 <div class="row">
 	
@@ -49,6 +11,8 @@
 		<!-- Задания  -->
 		
 		<div class="tile-stats tile-white-cyan">
+
+			<a href="/track/<?php echo $track->id; ?>/theory" class="btn pull-right text-muted" style="position: relative; z-index: 15;">Показать теорию</a>
 		
 			<h2>Задания</h2>
 			
@@ -64,7 +28,36 @@
 
 					<tr ><td>
 						<a href="/task/<?php echo $task->id; ?>"><?php echo $i++.". ".$task->title; ?></a>
-					</td><td>
+					
+						
+					
+
+					</td>
+
+
+						<?php 
+
+						if(Yii::app()->my->access("check")): ?>	<td>
+
+							<?php $strlen = strlen($task->theory); ?>
+
+							<?php if($strlen>5 AND $strlen<=300): ?>
+								<span class="label label-primary pull-right">немножко теории</span>
+							<?php endif; ?>
+
+							 
+
+							<?php if($strlen<5): ?>
+								<span class="label label-secondary pull-right">Нет теории</span>
+							<?php endif; ?>
+
+						
+						</td><?php endif; ?>
+
+
+					<td>
+
+
 
 						<!-- Показываем плашку с обозначением статуса -->
 
@@ -79,6 +72,40 @@
 			<?php if(Yii::app()->my->access("edit") ): ?>
 			
 				<a href="/new/task/<?php echo $track->id; ?>" class="btn btn-block btn-default">Добавить новое</a>
+			
+			<?php endif; ?>
+
+			<br>
+
+			<h3>Частые вопросы</h3>
+
+			<br>
+
+			<table class="table">
+
+				<?php foreach ($track->Faqs as $faq): ?>
+				
+					<tr>
+						<td>
+
+							 
+							<details>
+								<summary class="expand" ><span><?php echo $faq->title; ?></span></summary>
+								<p><?php echo $faq->answer; ?></p>
+								<?php if(Yii::app()->my->access("edit") ): ?><a href="/faqs/<?php echo $faq->id; ?>/edit" class="edit">править</a><?php endif; ?>
+							
+							</details>
+
+						</td>
+					</tr>
+
+				<?php endforeach; ?>
+
+			</table>
+			
+			<?php if(Yii::app()->my->access("edit") ): ?>
+			
+				<br><a href="/faqs/create/<?php echo $track->id; ?>" class="btn btn-block btn-default">Добавить вопрос-ответ</a>
 			
 			<?php endif; ?>
 			
@@ -155,3 +182,10 @@
 	</div>
 
 </div>
+
+
+<script>
+	
+ 
+
+</script>

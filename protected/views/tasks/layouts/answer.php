@@ -55,7 +55,7 @@
 
 					<?php if($task->discussed): ?>
 					
-						<span class="label label-default pull-right" style="position:relative; top: -2px;"><?php echo $task->discussed; ?> комментарий</span>	 
+						<span class="label label-primary pull-right" style="position:relative; top: -2px;"><?php echo $task->discussed; ?> комментарий</span>	 
 					
 					<?php endif; ?>
 					

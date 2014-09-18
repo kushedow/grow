@@ -159,7 +159,6 @@ class my extends CComponent{
 
 	private function accessMatrix(){
 		
-			
 		return [
 
 		 	"students"=>[  /* управление студентами */
@@ -199,10 +198,17 @@ class my extends CComponent{
 		 		"curator"=>true,
 		 		"student"=>true,		 		  
 		 		   
+		 	],
+		 	"check"=>[
+
+		 		"owner"=>true, 
+		 		"author"=>true,
+		 		"curator"=>true,
+		 		"student"=>true,	
+
 		 	]
 
 		];
-
 
 	}
 

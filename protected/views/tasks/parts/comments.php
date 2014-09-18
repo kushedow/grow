@@ -3,11 +3,13 @@
 
 	<?php foreach ($task->Solutions[0]->Comments as $comment): ?>
 	
-		<div class=" alert alert-default">
+		<div class=" alert alert-default comment">
 				
-				<p class="small"><b><?php echo $comment->Student->fullname; ?>:</b>	
+				<p class="small">
 
-				 <?php echo $comment->comment; ?></p>
+					<?php if(isset($comment->Student)): ?><b><?php echo $comment->Student->fullname; ?>:</b><?php endif; ?>
+
+				 <?php echo htmlspecialchars( $comment->comment); ?></p>
 				 
 		</div>
 
@@ -32,6 +34,9 @@
 
 	<?php $this->endWidget(); ?>
 	
+<?php else: ?>
+
+<p class="alert alert-default">Сохраните задание, чтобы добавлять комментарии</p>
 
 <?php endif; ?>
 

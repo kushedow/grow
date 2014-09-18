@@ -10,9 +10,24 @@ class GroupsController extends Controller
 	}
 
 	public function actionbycode($code){
-	
-		$this->render('single');
 
+		$group = Groups::model()->with(array("Students","Course.Tracks"))->findByAttributes(array("code"=>$code));
+	
+		$this->render('single',array("group"=>$group));
+
+	}
+
+	/**
+	*
+	*
+	*
+	**/
+
+	public function actionTracks($code){
+
+		
+
+		//$this->render('tracks', array('key'=>value));
 	}
 
 

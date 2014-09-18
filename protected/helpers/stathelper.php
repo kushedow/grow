@@ -38,7 +38,7 @@
 					if( $task->Solutions){ 
 
 						$status = $task->Solutions[0]->status;
-						$stat[$status]++;
+						if(isset($stat[$status])){$stat[$status]++;}
 
 					}
 
@@ -61,6 +61,8 @@
 			**/
 
 			static function earnedforcourse($student,$course){
+
+				 
 				
 				$sql = "SELECT SUM(earned) as points FROM Solutions WHERE student = ".$student." AND course = ".$course." AND status = 'complete' ";
 				$command = Yii::app()->db->createCommand($sql);
@@ -94,6 +96,26 @@
 
 			}	
 
+			static function pointstotal($student){
+
+				// теперь добавим сюда дикие поинты
+
+				$sql = "SELECT SUM(earned) as points FROM Solutions WHERE student = ".$student." AND status = 'complete' ";
+				$command = Yii::app()->db->createCommand($sql);
+				$results = $command->queryAll();
+
+				$from_tasks = $results[0]['points'];
+
+				$sql = "SELECT SUM(earned) as points FROM Points WHERE student = ".$student." ";
+				$command = Yii::app()->db->createCommand($sql);
+				$results = $command->queryAll();
+
+				$from_bonus = $results[0]['points'];
+
+				return $from_tasks + $from_bonus;
+				 
+			}
+
 
 			// public function pointsfortrack($track){
 
@@ -114,6 +136,18 @@
 			// 	return $results[0]['points'];
 
 			// }
+
+			static function myToFinish(){
+				
+				return Solutions::model()->CountByAttributes(array("status"=>"finishhim","student"=>Yii::app()->my->id));
+
+			}
+
+			static function checkTotal(){
+			
+				return Solutions::model()->CountByAttributes(array("status"=>"check"));
+
+			}
 
 
 

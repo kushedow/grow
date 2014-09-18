@@ -41,9 +41,31 @@ form .row label{display: inline-block; margin-top: 5px;}
 
 }
 
+.profile-env .points{
+
+position: absolute;
+left: 122px;
+bottom: 0px;
+border-radius: 50px;
+width: 60px;
+text-align: center;
+height: 60px;
+background-color: #444;
+color: #fff;
+padding: 10px;
+
+}
+
+.profile-env .points strong{
+
+	font-size: 1.3em;
+
+}
+
 .profile-info.dropdown > a img {  transform: translateX(0px); transition: 700ms transform;}
 
 .sidebar-collapsed .profile-info.dropdown > a img, .sidebar-is-collapsing .profile-info.dropdown > a img  {	transform: translateX(-10px);}
+
 
 
 /* Меняем ширину для изображения на странице группы */
@@ -143,17 +165,42 @@ form .btn-icon.icon-left.pull-right{
 
 }
 
-article.theory{
-
-	white-space: pre-line;
+article.theory {
+	 
 	padding: 0px 20px;
+	color: #555;
+	font-size: 14px;
+	 
+}
+
+article.theory code {
+	 
+	padding: 3px 6px; 
+	display: inline-block;
+	margin-top: 5px;
+	 
+}
+
+article.theory a.title {
+
+	text-decoration: none;
+	margin: 17px 0;
+	display: block;
+	 
+}
+
+article.theory a {
+
+	text-decoration: underline;
+	color: royalblue;
+	outline: none;
 }
 
  
 
 .panel-body.bordered .tab-content{
 
-	padding: 0 20px;
+	padding: 0 10px;
 
 }
 
@@ -208,18 +255,22 @@ padding: 17px 20px;
 
 /* На странице курса смотрим прогресс по треку*/
 
+.panel-heading > .panel-title {
+float: none; 
 
-/*
-.panel-heading > .panel-title {float: none;} /* Так делать нельзя*/
-*/
+}
+ 
 .panel-heading > .panel-title .progress-micro {
 	border-radius: 5px;
 	background-color: #444;
-	height: 4px;
+	height: 6px;
 	margin: 7px 0 2px 0 ;
+	margin-top: 6px;
+	overflow: hidden;
+
 }
 
-.progress-bar-micro { background-color: #2FAF86; height: 4px;  border-radius: 5px;}
+.progress-bar-micro { background-color: #21a9e1; height: 6px;  border-radius: 5px;}
 
 /* Раскрашиваем блоки */
 
@@ -460,9 +511,33 @@ bottom: 5px;
 
 #stopwatch {
 
-	font-size: 18px;
+	/*font-size: 18px;*/
 	padding: 0px 10px;
 
 }
 
 #stopwatch:hover {	color: #fff;}
+
+/* FAQ */
+
+details {outline: none; }
+
+.expand span { border-bottom: 1px dashed #444; font-size: 14px;}
+
+.tile-stats.tile-white-cyan details p {
+	color: #444;
+	font-size: 13px;
+	margin-left: 13px;
+	margin-top: 10px;
+}
+
+details a.edit{ margin-left: 13px; }
+
+.expand {
+	
+	outline:none;
+	cursor: pointer;
+	 
+}
+
+

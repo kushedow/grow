@@ -3,15 +3,15 @@
 
 	$options = statushelper::options();
 
-	if($task->active){ 
+	if(isset($task->Solutions[0]) ){ 
 
 		$solution = $task->Solutions[0]; $status = $solution->status; 
 
 		$student = $task->Solutions[0]->student;
 
-	}else {$status = "undefined";}
+	}else {$status = "undefined"; $student = 0;}
 
-	$student = $_SESSION['user'];
+	
 	
 ?>
 

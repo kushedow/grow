@@ -26,6 +26,7 @@
 	</li>
 </ol>
 
+<table class="table">
 
 <?php
 // $dataProvider->getData() will return a list of Post objects
@@ -41,8 +42,6 @@ $this->widget('zii.widgets.CListView', array(
 
 ));
 
-
-
-
 ?>
 
+</table>

@@ -38,8 +38,6 @@ class Controller extends CController{
 
 			//Yii::app()->notify->add("Добавлен комментарий");
 
-			print_r($comment);
-
 			if(isset($comment)){
 
 				if(isset($comment['id']) AND isset($comment['model']) ){}

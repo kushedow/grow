@@ -44,30 +44,84 @@ class TracksController extends Controller{
 
 	}
 
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+
+	public function actionProgress($id,$trackid){
+
+		$progress = array();
+
+		// получаем список пользователей
+
+		// получаем задания по пользователю, сразу же с решениями
+
+		$track = Tracks::model()->findByPk($trackid);
+
+		$group = Groups::model()->with("Students")->findByPk($id);
+
+
+		// пройдемся по всем студентам в группе
+
+		foreach ($group->Students as $student) {
+
+			// получим теперь таски и солюшны этого студента
+
+			$students[$student->id] = $student;
+
+			$tasks = Tasks::model()->with(
+
+		 		array('Solutions'=>array('on'=>'Solutions.student='.$student->id))
+
+		   		 )->findAllByAttributes(array("track"=>$trackid), array('order' => 't.order') );
+
+			 // продемся по всем задачам
+
+			 foreach ($tasks as $task): 
+
+	
+				if(isset($task->Solutions[0])){
+
+			 		// если у таска есть солюшн – возьмем 
+
+					$progress[$student->id][$task->id] = $task->Solutions[0]->status; ;
+
+				}else{
+
+					// если нет – запишем нейтральный статус
+
+					$progress[$student->id][$task->id] = "undefined" ;
+
+				}
+			
+			 endforeach;  
+			 
+		}
+
+
+		$this->render('progress', array("group"=>$group,"track"=>$track,"students"=>$students,"progress"=>$progress));
+		
 	}
 
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+	
+
+
+	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
+
+
+
+
+	public function actionTheory($id){
+		
+		$track = Tracks::model()->with("Tasks")->findByPk($id);
+
+		$tasks = Tasks::model()->findAllByAttributes(array("track"=>$id),array("order"=>"t.order"));
+
+		$this->render('theory', array('track'=>$track,'tasks'=>$tasks));
+
 	}
-	*/
+
+
+
+
+	 
 }

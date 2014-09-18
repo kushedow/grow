@@ -63,6 +63,7 @@ class Tracks extends ActiveRecord
 			'Docs'=>array(self::MANY_MANY,'Docs','tracks_docs(track_id, doc_id)'),
 			'Algorithms'=>array(self::MANY_MANY,'Algorithms','tracks_algorithms(track_id,algorithm_id)'),
 			'Videos'=>array(self::HAS_MANY,'Videos','track'),
+			'Faqs'=>array(self::HAS_MANY,'Faqs','track'),
 		
 		);
 
@@ -111,7 +112,8 @@ class Tracks extends ActiveRecord
 			'course' => 'Course',
 			'author' => 'Author',
 			'status' => 'Status',
-			'time' => 'Время выполнения'		
+			'time' => 'Время выполнения'	,	
+			'order' => 'Порядок выполнения'		
 		);
 	}
 

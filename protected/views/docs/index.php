@@ -1,18 +1,15 @@
 <?php $this->layout="track"; ?>
 
+<a href="/docs/create" class="btn btn-primary pull-right">Добавить</a>
+
 <h2>Библиотека: пробный режим</h2>
 <br>
 
 <div class="row"> 
 
-<div class="col-md-3">
 
-<div id="toc" class="tocify" style="width: 220px;">
- 
-</div>
-</div>
 
-<div class="col-md-9">
+<div class="col-md-12">
 
 	<?php $this->renderPartial("parts/list",array("docs"=>$docs)); ?>
 				

@@ -29,13 +29,21 @@
 						</a>
 					</td>
 					<td class="middle-align">
-						<a href="<?php echo $doc->link ?>" target="blank">
+						<h4><a href="<?php echo $doc->link ?>" target="blank">
 							 <?php echo $doc->title ?> 
-						</a>
+						</a></h4>
 						<p class="small"><small class="text-muted"><?php echo $doc->description; ?></small></p>
 					</td>
 					 
-					<td class="text-center middle-align " style="width: 60px"><a href="/docs/<?php echo $doc->id; ?>/add" class="btn btn-primary btn-save">На полку</a></td>
+					<td class="text-center middle-align align-right"  >
+
+						<a href="/docs/<?php echo $doc->id; ?>/edit" target="blank" class="btn btn-default">Редактировать</a>					
+						<a href="<?php echo $doc->link; ?>" target="blank" class="btn btn-primary">Открыть</a>		
+
+					</td>				
+
+					</td>
+
 				</tr>
 
 		<?php endforeach; ?>

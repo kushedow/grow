@@ -99,7 +99,7 @@ form .btn-icon.icon-left.pull-right{
 	background-color: #383737;
 	border-radius: 0;
 	padding: 12px 35px;
-	z-index: 1;
+	z-index: 50;
 
 
 }
@@ -194,6 +194,11 @@ article.theory a {
 	text-decoration: underline;
 	color: royalblue;
 	outline: none;
+}
+
+article.theory img {
+
+	width: 100%;
 }
 
  

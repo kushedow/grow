@@ -8,7 +8,7 @@
 
 		    	<figure class="student-avatar">
 		    	
-					<img src="<?php echo  $student->avatar; ?>" class="img-circle" width="150" height="150"  alt="">
+					<a href="/student<?php echo $student->id; ?>/portfolio" target="blank"><img src="<?php echo  $student->avatar; ?>" class="img-circle" width="150" height="150"  alt=""></a>
 
 					<div class="points"><strong><?php echo stathelper::pointstotal($student->id); ?></strong> поинт</div>
 
@@ -18,7 +18,6 @@
 			
 			<div class="col-md-9">
 
-				
 				<h2><?php echo $student->fullname; ?><?php if($student->id==Yii::app()->my->id): ?> (это вас так зовут)<?php endif; ?>
 				
 					<?php if(Yii::app()->my->access("check") ): ?>

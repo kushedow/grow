@@ -44,6 +44,8 @@ return array(
 	// Библиотека
 
 	'docs'=>'docs/index',
+	'docs/create'=>'editor/createdoc',	
+	'docs/<id:\d+>/edit'=>'editor/editdoc',
 	'docs/my'=>'docs/my',
 	'docs/<doc:\d+>/add'=>'docs/add',
 
@@ -98,7 +100,10 @@ return array(
 
 	'settings'=>"students/settings",
 
-	'bugreport'=>"site/bugreport"
+	'bugreport'=>"site/bugreport",
+
+	'student<id:\d+>/portfolio'=>"portfolio/index",	
+	'student<id:\d+>/portfolio/<item:\d+>'=>"portfolio/single",	
 
 
 ); ?>

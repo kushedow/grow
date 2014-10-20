@@ -25,7 +25,7 @@
 			<?php endif; ?>
 
 
-			<div class="tab-pane <?php if($task->layout=="html-css" OR $task->layout=="html-full"):?> active <?php endif; ?>" id="editor-html">
+			<div class="tab-pane <?php if($task->layout=="html-css" OR $task->layout=="html-full" OR $task->layout=="html-site" ):?> active <?php endif; ?>" id="editor-html">
 
 				<textarea id="code-html" name="Solutions[html]" class="checkme_editor"><?php echo $task['html'] ?></textarea>	
 
@@ -44,13 +44,13 @@
 
 			</div>
 
-			<div class="tab-pane" id="editor-js">
+			<div class="tab-pane <?php if($task->layout=="js"):?> active <?php endif; ?>" id="editor-js">
 
 				<textarea id="code-js" name="Solutions[js]" class="checkme_editor"><?php echo $task['js'] ?></textarea>	
 
 			</div>
 
-			<?php if($task->layout=="html-full"): ?>
+			<?php if($task->layout=="html-full" OR $task->layout=="html-site"): ?>
 
 				
 				<div class="tab-pane" id="editor-comments">  

@@ -321,6 +321,64 @@ class EditorController extends Controller{
 
 
 
+	//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+
+
+	//               Обрабатываем  Документы                    //
+
+
+
+	public function actionCreatedoc(){
+
+		if(isset($_REQUEST['Docs'])){
+
+			// обрабатывем данные из формы
+
+			if($doc = Docs::model()->updateFromRequest()){
+
+				$this->redirect( array('/docs/'.$doc->id.'/edit') );
+
+			}else{
+
+				/* не создан, покажи ошибки и окошко создания нового */
+
+			}
+ 
+		} 
+
+		if(!isset($doc)) { $doc = new Docs();}
+
+		$this->render('docs',array("doc"=>$doc));
+
+	}
+
+
+	public function actionEditdoc($id){
+
+		$doc = Docs::model()->findByPk($id);
+		
+		if(isset($_REQUEST['Docs'])){
+
+			// обрабатывем данные из формы
+
+			$doc = Docs::model()->updateFromRequest($id);
+
+		}
+
+		$this->render('doc',array("doc"=>$doc));
+		
+	}
+
+
+
+	//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
+
+
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

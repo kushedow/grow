@@ -47,7 +47,7 @@
 						
 						<a href="/auth/logout" class="profile-logout " style="line-height: 43px; position:absolute; right:0"><small>выйти</small></a>
 
-						<a href="#" class="dropdown-toggle pull-left" data-toggle="dropdown">
+						<a href="/student<?php echo $_SESSION['id']; ?>" class="dropdown-toggle pull-left" data-toggle="dropdown">
 							<img src="<?php echo $_SESSION['avatar'] ?>" alt="" class="img-circle " width="44" height="44">
 							<span class="fullname"><?php echo $_SESSION['fullname']; ?></span><br>
 							
@@ -104,12 +104,18 @@
 				</ul>
 
 			</li>
-			<!-- <li>
-				<a href="/docs" target="_blank">
-					<i class="entypo-monitor"></i>
-					<span>Файлы и презентации</span>
-				</a>
-			</li> -->
+
+			<?php if(Yii::app()->my->access("check")): ?>
+
+				<li>
+					<a href="/docs" target="_blank">
+						<i class="entypo-monitor"></i>
+						<span>Файлы и презентации</span>
+					</a>
+				</li>
+
+			<?php endif; ?>
+
 			<!-- <li>
 				<a href="ui-panels.html">
 					<i class="entypo-newspaper"></i>

@@ -9,7 +9,7 @@
 <h4>Редактирование темы (трека) </h2>
 
 <?php $form=$this->beginWidget('CActiveForm'); ?>
-
+ 
 <br>
 
 <div class="row">
@@ -28,6 +28,11 @@
 
 		<label for="">Код трека</label>
 		<?php echo $form->textField($track,'code',array('class'=>'form-control') ); ?>
+
+		<br>
+		
+		<label for="">Порядок трека</label>
+		<?php echo $form->textField($track,'order',array('class'=>'form-control') ); ?>
 
 	</div>
 

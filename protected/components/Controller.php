@@ -21,7 +21,9 @@ class Controller extends CController{
 
 	public function __construct($id=null,$module=null){
 
-		if(!Yii::app()->my->logged){$this->redirect(array('auth/index'));};
+		
+
+		if(!Yii::app()->my->logged AND "PortfolioController"!=get_called_class()){$this->redirect(array('auth/index'));};
 
 		parent::__construct($id,$module=null);
 
@@ -30,8 +32,6 @@ class Controller extends CController{
 
 	protected function beforeAction($action){
 		 
-		
-
 		if(isset($_REQUEST['Comments'])){
 
 			$comment = $_REQUEST['Comments'];

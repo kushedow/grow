@@ -6,7 +6,7 @@ class TasksController extends Controller
 	{
 		$this->render('index');
 	}
-
+ 
 	/**
 	*
 	*  Показывет задание по id для залогинившегося персонажа
@@ -34,16 +34,15 @@ class TasksController extends Controller
 
 
 
-
 	/////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////
-
-
 
 
 
 	public function actionByid($id,$student = null){
+
+		header('X-XSS-Protection: 0');
 
 		// Если студент не задан, то сохраняем для залогинившегося пользователя
 
@@ -93,6 +92,14 @@ class TasksController extends Controller
 
 
 	public function actionsomeonestask($student,$task){
+
+		if(Yii::app()->my->id!=$student AND !Yii::app()->my->access("check")){
+
+			Yii::app()->notify->add("Нет прав для просмотра");
+
+			$this->render('/site/error',array("code"=>"","message"=>""));
+
+		}
 		
 		$solution = Solutions::model()->findByAttributes(array("student"=>$student,"task"=>$task));
 
@@ -280,15 +287,13 @@ class TasksController extends Controller
 	/////////////////////////////////////////////////////////////////////
 
 
-
 	public function actionCheckall($course=null){
 
-		$solutions = Solutions::model()->with("Task")->FindAllByAttributes(array("status"=>"check"));
+		$solutions = Solutions::model()->with("Task.Tracks.Course")->FindAllByAttributes(array("status"=>"check"));
 
 		$this->render('check', array('solutions'=>$solutions));
 		
 	}
-
 
 
 	// private function addComment($solution,$comment){

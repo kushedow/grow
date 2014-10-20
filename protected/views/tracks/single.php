@@ -12,7 +12,7 @@
 		
 		<div class="tile-stats tile-white-cyan">
 
-			<a href="/track/<?php echo $track->id; ?>/theory" class="btn pull-right text-muted" style="position: relative; z-index: 15;">Показать теорию</a>
+			<a href="/track/<?php echo $track->id; ?>/theory" class="btn pull-right btn-primary text-muted" style="position: relative; z-index: 15;">Показать теорию</a>
 		
 			<h2>Задания</h2>
 			
@@ -121,7 +121,6 @@
 		<?php if($track->Docs): ?>
 
 				<div class="tile-stats tile-white-cyan">
-					 
 
 					<h3>Материалы</h3>
 				

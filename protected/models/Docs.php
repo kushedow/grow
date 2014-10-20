@@ -6,13 +6,13 @@
  * The followings are the available columns in table 'docs':
  * @property integer $id
  * @property string $title
- * @property string $desciption
+ * @property string $description
  * @property string $picture
  * @property string $link
  * @property string $type
  * @property integer $owner
  */
-class Docs extends CActiveRecord
+class Docs extends ActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -30,14 +30,14 @@ class Docs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, desciption, picture, link, type, owner', 'required'),
+			array('title, description, picture, link', 'required'),
 			array('owner', 'numerical', 'integerOnly'=>true),
 			array('title, link', 'length', 'max'=>170),
-			array('desciption, picture', 'length', 'max'=>340),
+			array('description, picture', 'length', 'max'=>340),
 			array('type', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, desciption, picture, link, type, owner', 'safe', 'on'=>'search'),
+			array('id, title, desrciption, picture, link, type, owner', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,11 +62,12 @@ class Docs extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'title' => 'Title',
-			'desciption' => 'Desciption',
+			'description' => 'Description',
 			'picture' => 'Picture',
 			'link' => 'Link',
 			'type' => 'Type',
 			'owner' => 'Owner',
+
 		);
 	}
 
@@ -90,7 +91,7 @@ class Docs extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('description',$this->desciption,true);
+		$criteria->compare('description',$this->description,true);
 		$criteria->compare('picture',$this->picture,true);
 		$criteria->compare('link',$this->link,true);
 		$criteria->compare('type',$this->type,true);
